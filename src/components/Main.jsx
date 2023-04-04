@@ -1,19 +1,13 @@
-import Constants from 'expo-constants'
-import { StyleSheet, Text, View } from "react-native"
+import { View } from "react-native"
 import RepositoryList from './RepositoryList'
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: Constants.statusBarHeight,
-    flexGrow: 1,
-    flexShrink: 1,
-  }
-})
+import Text from './Text'
+import AppBar from './AppBar'
 
 const Main = () => {
   return (
-    <View style={styles.container}>
-      <Text>Rate Repository Application</Text>
+    <View>
+      <AppBar />
+      <Text fontWeight="bold" fontSize="subheading" color="textSecondary">Rate Repository Application</Text>
       <RepositoryList />
     </View>
   )
