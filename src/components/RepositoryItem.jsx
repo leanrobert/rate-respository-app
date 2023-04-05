@@ -1,5 +1,6 @@
 import React from 'react'
-import { Image, Text, View } from 'react-native'
+import { Image, Pressable, Text, View } from 'react-native'
+import * as Linking from 'expo-linking';
 
 const styles = {
   container: {
@@ -40,7 +41,11 @@ const styles = {
   }
 }
 
-const RepositoryItem = ({ item }) => {
+const RepositoryItem = ({ item, button }) => {
+  const handlePress = () => {
+    Linking.openURL(item.url)
+  }
+
   return (
     <View style={styles.container} >
       <View style={styles.flexContainer}>
@@ -51,7 +56,7 @@ const RepositoryItem = ({ item }) => {
           <Text style={{ fontWeight: 'bold' }} testID="fullname">{item.fullName}</Text>
           <Text testID="description">{item.description}</Text>
           <View style={{ flexWrap: 'wrap', marginVertical: 10}} >
-          <Text style={styles.label} testID="language">{item.language}</Text>
+            <Text style={styles.label} testID="language">{item.language}</Text>
           </View>
         </View>
       </View>
@@ -73,6 +78,13 @@ const RepositoryItem = ({ item }) => {
           <Text>Rating</Text>
         </View>
       </View>
+      {button &&
+        <Pressable onPress={handlePress}>
+          <View style={{ backgroundColor: '#0366d6', borderRadius: 5, padding: 10, marginTop: 15}} >
+            <Text style={{ color: 'white', textAlign: 'center', fontSize: 18, fontWeight: 'bold'}}>Open in Github</Text>
+          </View>
+        </Pressable>
+      }
     </View>
   )
 }

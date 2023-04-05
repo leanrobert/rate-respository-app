@@ -24,8 +24,6 @@ const AppBar = () => {
   const { data } = useQuery(ME);
   const navigate = useNavigate();
 
-  console.log(data);
-
   const authStorage = useContext(AuthStorageContext);
   const apolloClient = useApolloClient();
 
