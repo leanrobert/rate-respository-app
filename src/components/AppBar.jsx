@@ -24,7 +24,7 @@ const AppBar = () => {
           <Text style={styles.textContainer}>Repositories</Text>
         </Link>
         <Link to='/signin'>
-          <Text style={styles.textContainer}>SignIn</Text>
+          <Text style={styles.textContainer}>Sign In</Text>
         </Link>
       </ScrollView>
     </View>
