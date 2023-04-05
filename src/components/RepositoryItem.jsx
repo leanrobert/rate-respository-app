@@ -42,34 +42,34 @@ const styles = {
 
 const RepositoryItem = ({ item }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} >
       <View style={styles.flexContainer}>
         <View style={{ paddingRight: 20 }}>
           <Image source={{ uri: item.ownerAvatarUrl }} style={styles.image} />
         </View>
         <View>
-          <Text style={{ fontWeight: 'bold' }}>{item.fullName}</Text>
-          <Text>{item.description}</Text>
+          <Text style={{ fontWeight: 'bold' }} testID="fullname">{item.fullName}</Text>
+          <Text testID="description">{item.description}</Text>
           <View style={{ flexWrap: 'wrap', marginVertical: 10}} >
-          <Text style={styles.label}>{item.language}</Text>
+          <Text style={styles.label} testID="language">{item.language}</Text>
           </View>
         </View>
       </View>
       <View style={styles.flexContainer2}>
         <View style={styles.flexContainer3}>
-          <Text style={{ fontWeight: 'bold' }}>{(item.stargazersCount / 1000).toFixed(1)}k</Text>
+          <Text style={{ fontWeight: 'bold' }} testID="stargazerscount">{item.stargazersCount > 1000 ? `${(item.stargazersCount / 1000).toFixed(1)}k` : item.stargazersCount}</Text>
           <Text>Stars</Text>
         </View>
         <View style={styles.flexContainer3}>
-          <Text style={{ fontWeight: 'bold' }}>{(item.forksCount / 1000).toFixed(1)}k</Text>
+          <Text style={{ fontWeight: 'bold' }} testID="forkcount">{item.forksCount > 1000 ? `${(item.forksCount / 1000).toFixed(1)}k` : item.forksCount}</Text>
           <Text>Forks</Text>
         </View>
         <View style={styles.flexContainer3}>
-          <Text style={{ fontWeight: 'bold' }}>{item.reviewCount}</Text>
+          <Text style={{ fontWeight: 'bold' }} testID="reviewcount">{item.reviewCount}</Text>
           <Text>Reviews</Text>
         </View>
         <View style={styles.flexContainer3}>
-          <Text style={{ fontWeight: 'bold' }}>{item.ratingAverage}</Text>
+          <Text style={{ fontWeight: 'bold' }} testID="ratingavg">{item.ratingAverage}</Text>
           <Text>Rating</Text>
         </View>
       </View>
