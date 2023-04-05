@@ -49,6 +49,19 @@ export const GET_SINGLE_REPO = gql`
       language
       ownerAvatarUrl
       url
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            user {
+              username
+            }
+            createdAt
+          }
+        }
+      }
     }
   }
 `

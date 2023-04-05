@@ -85,6 +85,20 @@ const RepositoryItem = ({ item, button }) => {
           </View>
         </Pressable>
       }
+      {item.reviews?.edges && item.reviews.edges.map(review => (
+        <View key={review.node.id} style={styles.flexContainer}>
+          <View>
+            <View style={{ height: 50, width: 50, backgroundColor: 'white', borderColor: '#0366d6', borderWidth: 2, borderStyle: 'solid', borderRadius: 50, margin: 10, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ color: '#0366d6'}}>{review.node.rating}</Text>
+            </View>
+          </View>
+          <View style={{ margin: 10 }}>
+            <Text style={{ fontWeight: 'bold', marginBottom: 2}}>{review.node.user.username}</Text>
+            <Text style={{ color: 'gray'}}>{review.node.createdAt}</Text>
+            <Text style={{ flexWrap: 'wrap'}}>{review.node.text}</Text>
+          </View>
+        </View>
+      ))}
     </View>
   )
 }
