@@ -1,19 +1,31 @@
-import { View } from "react-native"
-import RepositoryList from './RepositoryList'
-import AppBar from './AppBar'
-import SignIn from './SignIn'
-import { Navigate, Route, Routes } from "react-router-native"
-import RepositoryDetails from "./RepositoryDetails"
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { Navigate, Route, Routes } from "react-router-native";
+import RepositoryList from "./RepositoryList";
+import AppBar from "./AppBar";
+import theme from "../theme";
+import SignIn from "./SignIn";
+import SingleRepository from "./SingleRepository";
+import CreateReview from "./CreateReview";
+
+const styles = StyleSheet.create({
+  container: {
+    flexGrow: 1,
+    flexShrink: 1,
+    backgroundColor: theme.colors.background
+  }
+})
 
 const Main = () => {
   return (
-    <View style={{ backgroundColor: '#e1e4e8' }} >
+    <View style={styles.container}>
       <AppBar />
       <Routes>
         <Route path="/" element={<RepositoryList />} exact />
         <Route path="/signin" element={<SignIn />} exact />
-        <Route path="/:id" element={<RepositoryDetails />} exact />
-        <Route path="*" element={<Navigate to='/' replace />} />
+        <Route path="/repository/:id" element={<SingleRepository />} exact />
+        <Route path="/create-review" element={<CreateReview />} exact />
+        <Route path="*" element={<Navigate to='/' redorect  />} exact />
       </Routes>
     </View>
   )
