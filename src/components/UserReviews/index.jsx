@@ -36,6 +36,8 @@ const UserReviews = () => {
     }
   })
 
+  console.log(data);
+
   const [deleteReview] = useMutation(DELETE_REVIEW)
 
   const alert = (id) =>

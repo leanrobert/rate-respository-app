@@ -15,8 +15,7 @@ const SingleRepository = () => {
   })
 
   const handleFetchMore = () => {
-    const canFetchMore =
-      !loading && data && data.repository.reviews.pageInfo.hasNextPage;
+    const canFetchMore = !loading && data && data.repository.reviews.pageInfo?.hasNextPage;
     if (!canFetchMore) {
       return;
     }
@@ -58,7 +57,7 @@ const SingleRepository = () => {
   );
 
   const repository = data?.repository;
-  const reviews = data?.repository.revires.edges;
+  const reviews = data?.repository.reviews.edges;
 
   return (
     <FlatList
