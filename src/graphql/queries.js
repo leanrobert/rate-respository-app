@@ -94,6 +94,7 @@ export const GET_AUTHORIZED_USER = gql`
             createdAt
             text
             repository {
+              id
               fullName
             }
           }
