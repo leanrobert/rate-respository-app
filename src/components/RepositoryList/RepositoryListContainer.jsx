@@ -1,6 +1,7 @@
 import { FlatList, StyleSheet, View } from "react-native";
 import RepositoryItem from "../RepositoryItem";
-import Dropdown from "./Dropdown";
+import React from "react";
+import RepositoryListHeader from "./RepositoryListHeader";
 
 const styles = StyleSheet.create({
   separator: {
@@ -31,19 +32,38 @@ const renderItem = ({ item }) => (
   />
 )
 
-const RepositoryListContainer = ({ repositories, onPress, sort }) => {
-  const repositoryNodes = repositories ? repositories?.edges.map((edge) => edge.node) : []
+class RepositoryListContainer extends React.Component {
+  renderHeader = () => {
+    const { searchQuery, onChangeSearch, onPress, sort } = this.props;
 
-  return (
-    <FlatList
-      data={repositoryNodes}
-      ItemSeparatorComponent={ItemSeparator}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.id}
-      ListHeaderComponent={() => <Dropdown onPress={onPress} sort={sort} />}
-      ListHeaderComponentStyle={styles.listHeader}
-    />
-  )
+    return (
+      <RepositoryListHeader
+        searchQuery={searchQuery}
+        onChangeSearch={onChangeSearch}
+        onPress={onPress}
+        sort={sort}
+      />
+    );
+  }
+
+  render() {
+    const { repositories } = this.props;
+    const repositoryNodes = repositories
+      ? repositories?.edges.map((edge) => edge.node)
+      : [];
+
+
+    return (
+      <FlatList
+        data={repositoryNodes}
+        ItemSeparatorComponent={ItemSeparator}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+        ListHeaderComponent={this.renderHeader}
+        ListHeaderComponentStyle={styles.listHeader}
+      />
+    );
+  }
 }
 
 export default RepositoryListContainer
