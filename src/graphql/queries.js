@@ -69,3 +69,36 @@ export const GET_SINGLE_REPO = gql`
     }
   }
 `
+
+export const GET_AUTHORIZED_USER = gql`
+  query AuthorizedUser(
+    $first: Int
+    $after: String
+    $includeReviews: Boolean = false
+  ) {
+    authorizedUser {
+      id
+      username
+      reviews(first: $first, after: $after) @include(if: $includeReviews) {
+        pageInfo {
+          hasNextPage
+          totalCount
+          startCursor
+          endCursor
+        }
+        edges {
+          cursor
+          node {
+            id
+            rating
+            createdAt
+            text
+            repository {
+              fullName
+            }
+          }
+        }
+      }
+    }
+  }
+`;
